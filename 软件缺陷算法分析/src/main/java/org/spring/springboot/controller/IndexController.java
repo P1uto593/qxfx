@@ -31,9 +31,14 @@ public class IndexController {
 	@Autowired
 	private AdminMapper admindao;
 
+	/**
+	 * @mapping:loginactjson 登录
+	 *
+	 * @param canshu  传进来的参数 用于处理
+	 * @return 处理结果
+	 */
 	@ResponseBody
 	// 定义loginactjson，处理登录
-
 	@RequestMapping(value = "loginactjson")
 
 	public Map loginactjson(HttpServletRequest request, HttpServletResponse response, @RequestBody Map canshu,
@@ -151,7 +156,6 @@ public class IndexController {
 
 		ArrayList<ArrayList<String>> result = new ArrayList<>();
 
-		// System.out.println(type);
 
 		if ("SVM算法".equals(type)) {
 
@@ -161,13 +165,13 @@ public class IndexController {
 
 			ArrayList<ArrayList<String>> trainall = new ArrayList<>();
 
-			Set<String> typeall = SimpleSvm.huoqutype(dataall);
+			Set<String> typeall = SimpleSvm.huoqutype(dataall);//获取标签，在最后一列
 
 			for (int i = 0; i < dataall.size(); i++) {
 
-				ArrayList<String> chuliitem = dataall.get(i);
+				ArrayList<String> chuliitem = dataall.get(i);//挨个处理
 
-				String chulitype = chuliitem.get(chuliitem.size() - 1);
+				String chulitype = chuliitem.get(chuliitem.size() - 1);//type
 
 				int k = 0;
 				for (String dtype : typeall) {
@@ -333,200 +337,6 @@ public class IndexController {
 		resultmap.put("zongshu", zongshu);
 
 		return resultmap;
-	}
-
-	@RequestMapping(value = "fenxiact")
-	public String fenxiact(HttpServletRequest request, HttpServletResponse response, HttpSession session,
-			MultipartFile csvfile, String type) throws IOException {
-
-		String filepath = uploadUtile(csvfile, request);
-
-		ArrayList<ArrayList<String>> dataall = readTable(filepath);
-
-		ArrayList<ArrayList<String>> result = new ArrayList<>();
-
-		// System.out.println(type);
-
-		if ("SVM分类".equals(type)) {
-
-			request.setAttribute("type", "当前分析方法为SVM分类分析法");
-
-			dataall.remove(0);
-
-			ArrayList<ArrayList<String>> trainall = new ArrayList<>();
-
-			Set<String> typeall = SimpleSvm.huoqutype(dataall);
-
-			for (int i = 0; i < dataall.size(); i++) {
-
-				ArrayList<String> chuliitem = dataall.get(i);
-
-				String chulitype = chuliitem.get(chuliitem.size() - 1);
-
-				int k = 0;
-				for (String dtype : typeall) {
-
-					if (dtype.equals(chulitype)) {
-
-						if (k == 0) {
-							chuliitem.set(chuliitem.size() - 1, "-1");
-						} else {
-							chuliitem.set(chuliitem.size() - 1, "1");
-						}
-
-					}
-
-					k++;
-
-				}
-			}
-
-			for (int i = 0; i < Math.floor(dataall.size() / 3); i++) {
-
-				trainall.add(dataall.get(i));
-			}
-
-			// 调用 训练集和测试集进行对比测试
-
-			SimpleSvm svm = new SimpleSvm(0.0001);
-
-			Integer xlength = dataall.get(0).size();
-			Integer ylength = dataall.size();
-			Integer train_ylength = trainall.size();
-
-			double[] y = new double[train_ylength];
-			double[][] X = new double[train_ylength][xlength];
-			svm.loadAarray(X, y, trainall);
-
-			svm.Train(X, y, 7000);
-
-			double[] test_y = new double[ylength];
-			double[][] test_X = new double[ylength][xlength];
-			svm.loadAarray(test_X, test_y, dataall);
-			// svm.Test(test_X, test_y);
-
-			for (int i = 0; i < test_X.length; i++) {
-				ArrayList<String> datamodel = dataall.get(i);
-
-				datamodel.add(String.valueOf(svm.predict(test_X[i])));
-
-				String flag = "";
-				String res = datamodel.get(datamodel.size() - 1);
-				String orgres = datamodel.get(datamodel.size() - 2);
-				if (res.equals(orgres)) {
-					flag = "预测正确";
-				} else {
-					flag = "预测错误";
-				}
-
-				if ("-1".equals(res)) {
-					datamodel.set(datamodel.size() - 1, String.valueOf(typeall.toArray()[0]));
-				}
-				if ("1".equals(res)) {
-					datamodel.set(datamodel.size() - 1, String.valueOf(typeall.toArray()[1]));
-				}
-
-				if ("-1".equals(orgres)) {
-					datamodel.set(datamodel.size() - 2, String.valueOf(typeall.toArray()[0]));
-				}
-				if ("1".equals(orgres)) {
-					datamodel.set(datamodel.size() - 2, String.valueOf(typeall.toArray()[1]));
-				}
-
-				datamodel.add(flag);
-
-				result.add(datamodel);
-			}
-
-		}
-
-		if ("knn".equals(type)) {
-			request.setAttribute("type", "当前分析方法为KNN分类分析法");
-			List<KnnModel> knnModelList = new ArrayList<>();
-
-			for (int i = 1; i < 50; i++) {
-
-				ArrayList<String> dataitem = dataall.get(i);
-
-				ArrayList<Double> list1 = new ArrayList<>();
-
-				for (int j = 0; j < dataitem.size() - 2; j++) {
-					list1.add(Double.parseDouble(dataitem.get(j)));
-				}
-				knnModelList.add(new KnnModel(list1, dataitem.get(dataitem.size() - 1)));
-			}
-
-			for (int i = 1; i < dataall.size(); i++) {
-
-				ArrayList<String> datamodel = dataall.get(i);
-
-				ArrayList<Double> listm = new ArrayList<>();
-
-				for (int j = 0; j < datamodel.size() - 2; j++) {
-					listm.add(Double.parseDouble(datamodel.get(j)));
-				}
-
-				KnnModel model = new KnnModel(listm, null);
-
-				String res = KNN.calculateKnn(knnModelList, model, 3);
-
-				datamodel.add(res);
-
-				String flag = "";
-
-				if (res.equals(datamodel.get(datamodel.size() - 2))) {
-					flag = "预测正确";
-				} else {
-					flag = "预测错误";
-				}
-				datamodel.add(flag);
-
-				result.add(datamodel);
-
-			}
-		}
-
-		request.setAttribute("result", result);
-
-		Integer zhengqueshu = 0;
-		Integer zongshu = 0;
-
-		HashMap<String, Integer> jieguo = new HashMap<>();
-
-		for (int i = 0; i < result.size(); i++) {
-			ArrayList<String> resitem = result.get(i);
-
-			String nowtype = resitem.get(resitem.size() - 2);
-
-			if ("预测正确".equals(resitem.get(resitem.size() - 1))) {
-				zhengqueshu++;
-			}
-
-			zongshu++;
-
-			int mapflag = 0;
-			for (Map.Entry<String, Integer> entry : jieguo.entrySet()) {
-				String mapKey = entry.getKey();
-
-				if (mapKey.equals(nowtype)) {
-					mapflag = 1;
-				}
-
-			}
-
-			if (mapflag == 0) {
-				jieguo.put(nowtype, 1);
-			} else {
-				jieguo.put(nowtype, jieguo.get(nowtype) + 1);
-			}
-
-		}
-
-		request.setAttribute("jieguo", jieguo);
-		request.setAttribute("zhengqueshu", zhengqueshu);
-		request.setAttribute("zongshu", zongshu);
-
-		return "fenxijieguo";
 	}
 	public ArrayList<ArrayList<String>> readTable(String filePath) {
 		ArrayList<String> d = null;

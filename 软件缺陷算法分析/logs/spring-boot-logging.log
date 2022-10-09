@@ -16710,3 +16710,40 @@ org.apache.ibatis.binding.BindingException: Parameter 'id' not found. Available 
 2022-10-05 22:28:13.631 DEBUG 4972 --- [http-nio-8080-exec-1] o.s.s.dao.AdminMapper.selectByUser       : ==>  Preparing: select * from t_admin where username=? and password=? 
 2022-10-05 22:28:13.631 DEBUG 4972 --- [http-nio-8080-exec-1] o.s.s.dao.AdminMapper.selectByUser       : ==> Parameters: 123(String), 123(String)
 2022-10-05 22:28:13.632 DEBUG 4972 --- [http-nio-8080-exec-1] o.s.s.dao.AdminMapper.selectByUser       : <==      Total: 1
+2022-10-09 00:49:02.211  INFO 8932 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 8932 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 00:49:02.213  INFO 8932 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 00:49:03.097  INFO 8932 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 00:49:03.098  INFO 8932 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 00:49:03.321  INFO 8932 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 00:49:03.324  INFO 8932 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 00:49:03.962  INFO 8932 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.981 seconds (JVM running for 2.755)
+2022-10-09 00:49:14.155  INFO 8932 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 00:49:24.829  INFO 8932 --- [http-nio-8080-exec-10] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-10-09 00:49:24.982 DEBUG 8932 --- [http-nio-8080-exec-10] o.s.s.dao.AdminMapper.selectByUser       : ==>  Preparing: select * from t_admin where username=? and password=? 
+2022-10-09 00:49:24.994 DEBUG 8932 --- [http-nio-8080-exec-10] o.s.s.dao.AdminMapper.selectByUser       : ==> Parameters: 123(String), 123(String)
+2022-10-09 00:49:25.006 DEBUG 8932 --- [http-nio-8080-exec-10] o.s.s.dao.AdminMapper.selectByUser       : <==      Total: 1
+2022-10-09 00:49:47.148  INFO 8932 --- [Thread-11] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2022-10-09 15:27:10.361  INFO 2208 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 2208 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 15:27:10.363  INFO 2208 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 15:27:11.247  INFO 2208 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 15:27:11.247  INFO 2208 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 15:27:11.478  INFO 2208 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 15:27:11.481  INFO 2208 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 15:27:12.365  INFO 2208 --- [restartedMain] org.spring.springboot.Application        : Started Application in 2.181 seconds (JVM running for 3.032)
+2022-10-09 15:27:14.946  INFO 2208 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 15:27:19.677  INFO 2208 --- [http-nio-8080-exec-2] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-10-09 15:27:19.822 DEBUG 2208 --- [http-nio-8080-exec-2] o.s.s.dao.AdminMapper.selectByUser       : ==>  Preparing: select * from t_admin where username=? and password=? 
+2022-10-09 15:27:19.834 DEBUG 2208 --- [http-nio-8080-exec-2] o.s.s.dao.AdminMapper.selectByUser       : ==> Parameters: 123(String), 123(String)
+2022-10-09 15:27:19.843 DEBUG 2208 --- [http-nio-8080-exec-2] o.s.s.dao.AdminMapper.selectByUser       : <==      Total: 1
+2022-10-09 16:10:26.325 DEBUG 2208 --- [http-nio-8080-exec-9] o.s.s.dao.AdminMapper.selectByUser       : ==>  Preparing: select * from t_admin where username=? and password=? 
+2022-10-09 16:10:26.325 DEBUG 2208 --- [http-nio-8080-exec-9] o.s.s.dao.AdminMapper.selectByUser       : ==> Parameters: 123(String), 123(String)
+2022-10-09 16:10:26.326 DEBUG 2208 --- [http-nio-8080-exec-9] o.s.s.dao.AdminMapper.selectByUser       : <==      Total: 1
+2022-10-09 16:11:08.075  INFO 2208 --- [Thread-10] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2022-10-09 16:11:12.855  INFO 19580 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 19580 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 16:11:12.856  INFO 19580 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 16:11:13.649  INFO 19580 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 16:11:13.650  INFO 19580 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 16:11:13.853  INFO 19580 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 16:11:13.856  INFO 19580 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 16:11:14.457  INFO 19580 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.774 seconds (JVM running for 2.621)
+2022-10-09 16:11:17.085  INFO 19580 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
