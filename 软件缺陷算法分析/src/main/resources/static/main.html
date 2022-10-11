@@ -26,37 +26,39 @@
 					<el-button v-if="nowuser == ''" type="primary" class="butT" @click="handleLogin()">登录</el-button>
 					<el-button v-if="nowuser == ''" type="primary" class="butT" @click="handleRegist()">注册</el-button>
 					<el-button v-if="nowuser != ''" type="primary" class="butT" @click="zhuxiao()">注销</el-button>
-					
-					<span v-if="nowuser != ''" style="float: right;">当前用户：{{nowuser}}</span>
-					
-				</div>
-				<el-table size="small" current-row-key="id" :data="dataList" stripe style="width: 100%"
-    				max-height="550"
-					highlight-current-row>
-			        
-			        <el-table-column v-for="i in datawidth"
-                        :prop="i.toString()" :label="i.toString()" align="center">
 
-                    </el-table-column>
-				
-				</el-table>
+					<span v-if="nowuser != ''" style="float: right;">当前用户：{{nowuser}}</span>
+
+				</div>
+				<div style="width: 94%;margin-left: 3%">
+					<el-table size="small" current-row-key="id" :data="dataList" stripe style="width: 100%"
+							  max-height="700"
+							  highlight-current-row>
+
+						<el-table-column v-for="i in datawidth"
+										 :prop="i.toString()" :label="i.toString()" align="center">
+
+						</el-table-column>
+
+					</el-table>
+				</div>
 				<!-- 新增标签弹层 -->
 				<div class="add-form">
 					<el-dialog title="提交文档" :visible.sync="dialogFormVisible">
 					<el-form ref="dataAddForm" :model="formData" label-position="right"
-						label-width="80px"> 
+						label-width="80px">
 						<el-row> <el-col :span="12">
-					<el-form-item label="文档" prop="csvfile"> 
+					<el-form-item label="文档" prop="csvfile">
 					<input type="hidden" v-model="formData.csv" name="csv" id="csv">
 					<el-upload
 						class="upload-demo"
 						action="http://localhost:8080/addfilejson.action" :limit="1"
 						:on-preview="handlePreview"
 						:on-success="handsuccess"
-					> 
+					>
 					<el-button
-						size="small" type="primary">点击上传</el-button> </el-upload> </el-form-item> </el-col> </el-row> 
-						
+						size="small" type="primary">点击上传</el-button> </el-upload> </el-form-item> </el-col> </el-row>
+
 						<el-row>
 					<el-col :span="12"> <el-form-item label="算法类型">
 					<el-select v-model="formData.type" placeholder="请选择"> <el-option
@@ -68,74 +70,7 @@
 					</div>
 					</el-dialog>
 				</div>
-				
-				
-				<div class="login-form">
-					<el-dialog title="登录" :visible.sync="LoginFormVisible">
-					<el-form ref="dataLoginForm" :model="loginData" label-position="right"
-						label-width="80px"> 
-						
-					<el-row>
-						<el-col :span="12"> 
-							<el-form-item label="账号" prop="username">
-								<el-input v-model="loginData.username" /> 
-							</el-form-item> 
-						</el-col>  
-					</el-row>	
-					<el-row>
-						<el-col :span="12"> 
-							<el-form-item label="密码" prop="password">
-								<el-input v-model="loginData.password" show-password type="password"></el-input>
-							</el-form-item> 
-						</el-col>  
-					</el-row>	
-						
-					</el-form>
-					<div slot="footer" class="dialog-footer">
-						<el-button @click="LoginFormVisible = false">取消</el-button>
-						<el-button type="primary" @click="handleLoginAct()">登录</el-button>
-					</div>
-					</el-dialog>
-				</div>
-				
-				
-				<div class="regist-form">
-					<el-dialog title="注册" :visible.sync="registFormVisible">
-					<el-form ref="dataLoginForm" :model="registData" label-position="right"
-						label-width="80px"> 
-						
-					<el-row>
-						<el-col :span="12"> 
-							<el-form-item label="账号" prop="username">
-								<el-input v-model="registData.username" /> 
-							</el-form-item> 
-						</el-col>  
-					</el-row>	
-					
-					<el-row>
-						<el-col :span="12"> 
-							<el-form-item label="密码" prop="password">
-								<el-input v-model="registData.password" show-password type="password"></el-input>
-							</el-form-item> 
-						</el-col>  
-					</el-row>	
-					
-					<el-row>
-						<el-col :span="12"> 
-							<el-form-item label="确认密码" prop="repassword">
-								<el-input v-model="registData.repassword" show-password type="password"></el-input>
-							</el-form-item> 
-						</el-col>  
-					</el-row>	
-						
-					</el-form>
-					<div slot="footer" class="dialog-footer">
-						<el-button @click="registFormVisible = false">取消</el-button>
-						<el-button type="primary" @click="handleRegistAct()">注册</el-button>
-					</div>
-					</el-dialog>
-				</div>
-				
+
 
 			</div>
 		</div>
@@ -253,7 +188,7 @@
                         alert("分析成功");
                         _this.dialogFormVisible = false;
                         
-                        _this.restext = obj['type'] + ",总数据为：" + obj['zongshu'] + "条," + ",分析正确 " + obj['zhengqueshu'] + "条,";
+                        _this.restext = obj['type'] + ",总数据为：" + obj['zongshu'] + "条," + "分析正确 " + obj['zhengqueshu'] + "条,";
                         
                         var jieguo = obj['jieguo'];
                         

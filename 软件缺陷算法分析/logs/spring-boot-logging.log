@@ -16747,3 +16747,283 @@ org.apache.ibatis.binding.BindingException: Parameter 'id' not found. Available 
 2022-10-09 16:11:13.856  INFO 19580 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
 2022-10-09 16:11:14.457  INFO 19580 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.774 seconds (JVM running for 2.621)
 2022-10-09 16:11:17.085  INFO 19580 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 22:01:33.964  INFO 2496 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 2496 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 22:01:33.965  INFO 2496 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 22:01:34.799  INFO 2496 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 22:01:34.800  INFO 2496 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 22:01:35.005  INFO 2496 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 22:01:35.008  INFO 2496 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 22:01:35.651  INFO 2496 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.864 seconds (JVM running for 2.67)
+2022-10-09 22:01:50.734  INFO 2496 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 22:01:53.822  INFO 2496 --- [http-nio-8080-exec-2] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-10-09 22:01:53.973 DEBUG 2496 --- [http-nio-8080-exec-2] o.s.s.dao.AdminMapper.selectByUser       : ==>  Preparing: select * from t_admin where username=? and password=? 
+2022-10-09 22:01:53.987 DEBUG 2496 --- [http-nio-8080-exec-2] o.s.s.dao.AdminMapper.selectByUser       : ==> Parameters: 123(String), 123(String)
+2022-10-09 22:01:53.998 DEBUG 2496 --- [http-nio-8080-exec-2] o.s.s.dao.AdminMapper.selectByUser       : <==      Total: 1
+2022-10-09 22:12:40.364  INFO 2496 --- [Thread-11] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2022-10-09 22:12:43.138  INFO 3044 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 3044 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 22:12:43.139  INFO 3044 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 22:12:43.955  INFO 3044 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 22:12:43.956  INFO 3044 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 22:12:44.160  INFO 3044 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 22:12:44.163  INFO 3044 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 22:12:44.761  INFO 3044 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.803 seconds (JVM running for 2.62)
+2022-10-09 22:12:53.733  INFO 3044 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 22:13:27.601  INFO 17172 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 17172 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 22:13:27.603  INFO 17172 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 22:13:28.432  INFO 17172 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 22:13:28.433  INFO 17172 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 22:13:28.651  INFO 17172 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 22:13:28.654  INFO 17172 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 22:13:29.261  INFO 17172 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.83 seconds (JVM running for 2.645)
+2022-10-09 22:13:30.100  INFO 17172 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 22:13:44.132  INFO 2524 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 2524 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 22:13:44.133  INFO 2524 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 22:13:44.909  INFO 2524 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 22:13:44.909  INFO 2524 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 22:13:45.110  INFO 2524 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 22:13:45.113  INFO 2524 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 22:13:45.700  INFO 2524 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.738 seconds (JVM running for 2.549)
+2022-10-09 22:13:50.541  INFO 2524 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 22:25:19.918  INFO 8564 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 8564 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 22:25:19.919  INFO 8564 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 22:25:20.728  INFO 8564 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 22:25:20.728  INFO 8564 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 22:25:20.936  INFO 8564 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 22:25:20.939  INFO 8564 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 22:25:21.538  INFO 8564 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.793 seconds (JVM running for 2.638)
+2022-10-09 22:25:41.552  INFO 5944 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 5944 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 22:25:41.553  INFO 5944 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 22:25:42.356  INFO 5944 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 22:25:42.356  INFO 5944 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 22:25:42.565  INFO 5944 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 22:25:42.568  INFO 5944 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 22:25:43.171  INFO 5944 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.792 seconds (JVM running for 2.623)
+2022-10-09 22:25:43.223  INFO 5944 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 22:45:40.659  INFO 21004 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 21004 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 22:45:40.661  INFO 21004 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 22:45:41.449  INFO 21004 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 22:45:41.450  INFO 21004 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 22:45:41.658  INFO 21004 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 22:45:41.661  INFO 21004 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 22:45:42.396  INFO 21004 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.906 seconds (JVM running for 2.711)
+2022-10-09 22:45:42.947  INFO 21004 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 22:45:57.668  INFO 21004 --- [http-nio-8080-exec-9] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-10-09 22:45:57.807 DEBUG 21004 --- [http-nio-8080-exec-9] o.s.s.dao.AdminMapper.selectByUser       : ==>  Preparing: select * from t_admin where username=? and password=? 
+2022-10-09 22:45:57.819 DEBUG 21004 --- [http-nio-8080-exec-9] o.s.s.dao.AdminMapper.selectByUser       : ==> Parameters: 123(String), 123(String)
+2022-10-09 22:45:57.829 DEBUG 21004 --- [http-nio-8080-exec-9] o.s.s.dao.AdminMapper.selectByUser       : <==      Total: 1
+2022-10-09 22:46:26.342  INFO 21004 --- [Thread-10] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2022-10-09 22:46:29.484  INFO 7756 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 7756 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 22:46:29.485  INFO 7756 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 22:46:30.288  INFO 7756 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 22:46:30.288  INFO 7756 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 22:46:30.509  INFO 7756 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 22:46:30.512  INFO 7756 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 22:46:31.201  INFO 7756 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.886 seconds (JVM running for 2.699)
+2022-10-09 22:46:34.518  INFO 7756 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 22:46:36.166  INFO 7756 --- [http-nio-8080-exec-8] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-10-09 22:46:36.303 DEBUG 7756 --- [http-nio-8080-exec-8] o.s.s.dao.AdminMapper.selectByUser       : ==>  Preparing: select * from t_admin where username=? and password=? 
+2022-10-09 22:46:36.315 DEBUG 7756 --- [http-nio-8080-exec-8] o.s.s.dao.AdminMapper.selectByUser       : ==> Parameters: 123(String), 123(String)
+2022-10-09 22:46:36.325 DEBUG 7756 --- [http-nio-8080-exec-8] o.s.s.dao.AdminMapper.selectByUser       : <==      Total: 1
+2022-10-09 22:47:11.053  INFO 7756 --- [Thread-10] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2022-10-09 22:47:13.395  INFO 18260 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 18260 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 22:47:13.396  INFO 18260 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 22:47:14.219  INFO 18260 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 22:47:14.219  INFO 18260 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 22:47:14.422  INFO 18260 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 22:47:14.425  INFO 18260 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 22:47:15.035  INFO 18260 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.814 seconds (JVM running for 2.651)
+2022-10-09 22:47:16.440  INFO 18260 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 22:54:21.702  INFO 17128 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 17128 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 22:54:21.704  INFO 17128 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 22:54:22.498  INFO 17128 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 22:54:22.498  INFO 17128 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 22:54:22.696  INFO 17128 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 22:54:22.699  INFO 17128 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 22:54:23.297  INFO 17128 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.765 seconds (JVM running for 2.594)
+2022-10-09 22:54:26.107  INFO 17128 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 22:55:16.239  INFO 20808 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 20808 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 22:55:16.241  INFO 20808 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 22:55:17.020  INFO 20808 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 22:55:17.021  INFO 20808 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 22:55:17.223  INFO 20808 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 22:55:17.227  INFO 20808 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 22:55:17.817  INFO 20808 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.749 seconds (JVM running for 2.607)
+2022-10-09 22:55:21.710  INFO 20808 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 22:56:43.198  INFO 16152 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 16152 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 22:56:43.199  INFO 16152 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 22:56:43.967  INFO 16152 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 22:56:43.968  INFO 16152 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 22:56:44.170  INFO 16152 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 22:56:44.173  INFO 16152 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 22:56:44.753  INFO 16152 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.729 seconds (JVM running for 2.548)
+2022-10-09 22:56:47.571  INFO 16152 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 22:56:50.010  INFO 16152 --- [http-nio-8080-exec-6] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-10-09 22:56:50.156 DEBUG 16152 --- [http-nio-8080-exec-6] o.s.s.dao.AdminMapper.selectByUser       : ==>  Preparing: select * from t_admin where username=? and password=? 
+2022-10-09 22:56:50.168 DEBUG 16152 --- [http-nio-8080-exec-6] o.s.s.dao.AdminMapper.selectByUser       : ==> Parameters: 123(String), 123(String)
+2022-10-09 22:56:50.177 DEBUG 16152 --- [http-nio-8080-exec-6] o.s.s.dao.AdminMapper.selectByUser       : <==      Total: 1
+2022-10-09 22:57:16.147  INFO 16152 --- [Thread-11] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2022-10-09 22:57:18.389  INFO 7020 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 7020 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 22:57:18.391  INFO 7020 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 22:57:19.238  INFO 7020 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 22:57:19.239  INFO 7020 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 22:57:19.448  INFO 7020 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 22:57:19.451  INFO 7020 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 22:57:20.050  INFO 7020 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.852 seconds (JVM running for 2.666)
+2022-10-09 22:57:21.498  INFO 7020 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 22:57:35.823  INFO 10148 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 10148 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 22:57:35.824  INFO 10148 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 22:57:36.616  INFO 10148 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 22:57:36.617  INFO 10148 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 22:57:36.847  INFO 10148 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 22:57:36.850  INFO 10148 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 22:57:37.450  INFO 10148 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.802 seconds (JVM running for 2.633)
+2022-10-09 22:57:37.566  INFO 10148 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 22:59:11.038  INFO 15048 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 15048 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 22:59:11.040  INFO 15048 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 22:59:11.825  INFO 15048 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 22:59:11.826  INFO 15048 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 22:59:12.029  INFO 15048 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 22:59:12.032  INFO 15048 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 22:59:12.648  INFO 15048 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.785 seconds (JVM running for 2.591)
+2022-10-09 22:59:15.562  INFO 15048 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 22:59:45.679  INFO 18336 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 18336 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 22:59:45.680  INFO 18336 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 22:59:46.452  INFO 18336 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 22:59:46.453  INFO 18336 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 22:59:46.655  INFO 18336 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 22:59:46.658  INFO 18336 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 22:59:47.258  INFO 18336 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.748 seconds (JVM running for 2.569)
+2022-10-09 22:59:51.229  INFO 18336 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-09 23:03:15.872  INFO 5672 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 5672 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-09 23:03:15.874  INFO 5672 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-09 23:03:16.673  INFO 5672 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-09 23:03:16.673  INFO 5672 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-09 23:03:16.886  INFO 5672 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-09 23:03:16.889  INFO 5672 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-09 23:03:17.503  INFO 5672 --- [restartedMain] org.spring.springboot.Application        : Started Application in 1.807 seconds (JVM running for 2.658)
+2022-10-09 23:03:18.362  INFO 5672 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-11 16:12:31.918  INFO 22052 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 22052 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-11 16:12:31.921  INFO 22052 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-11 16:12:33.444  INFO 22052 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-11 16:12:33.445  INFO 22052 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-11 16:12:33.804  INFO 22052 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-11 16:12:33.809  INFO 22052 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-11 16:12:34.857  INFO 22052 --- [restartedMain] org.spring.springboot.Application        : Started Application in 3.403 seconds (JVM running for 5.078)
+2022-10-11 16:12:44.125  INFO 22052 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-11 16:12:46.164  INFO 22052 --- [http-nio-8080-exec-8] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-10-11 16:12:46.408 DEBUG 22052 --- [http-nio-8080-exec-8] o.s.s.dao.AdminMapper.selectByUser       : ==>  Preparing: select * from t_admin where username=? and password=? 
+2022-10-11 16:12:46.430 DEBUG 22052 --- [http-nio-8080-exec-8] o.s.s.dao.AdminMapper.selectByUser       : ==> Parameters: 123(String), 123(String)
+2022-10-11 16:12:46.448 DEBUG 22052 --- [http-nio-8080-exec-8] o.s.s.dao.AdminMapper.selectByUser       : <==      Total: 1
+2022-10-11 16:14:13.418  INFO 22052 --- [Thread-13] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2022-10-11 16:14:17.214  INFO 4344 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 4344 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-11 16:14:17.217  INFO 4344 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-11 16:14:18.573  INFO 4344 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-11 16:14:18.574  INFO 4344 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-11 16:14:18.916  INFO 4344 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-11 16:14:18.920  INFO 4344 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-11 16:14:19.875  INFO 4344 --- [restartedMain] org.spring.springboot.Application        : Started Application in 2.982 seconds (JVM running for 4.503)
+2022-10-11 16:14:25.703  INFO 4344 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-11 16:15:21.555  INFO 28660 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 28660 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-11 16:15:21.559  INFO 28660 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-11 16:15:22.903  INFO 28660 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-11 16:15:22.904  INFO 28660 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-11 16:15:23.256  INFO 28660 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-11 16:15:23.261  INFO 28660 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-11 16:15:24.240  INFO 28660 --- [restartedMain] org.spring.springboot.Application        : Started Application in 3.003 seconds (JVM running for 4.562)
+2022-10-11 16:15:24.346  INFO 28660 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-11 16:18:09.376  INFO 1956 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 1956 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-11 16:18:09.378  INFO 1956 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-11 16:18:10.688  INFO 1956 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-11 16:18:10.689  INFO 1956 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-11 16:18:11.028  INFO 1956 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-11 16:18:11.032  INFO 1956 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-11 16:18:12.033  INFO 1956 --- [restartedMain] org.spring.springboot.Application        : Started Application in 2.982 seconds (JVM running for 4.491)
+2022-10-11 16:18:12.078  INFO 1956 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-11 16:19:00.826  INFO 24920 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 24920 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-11 16:19:00.829  INFO 24920 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-11 16:19:02.052  INFO 24920 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-11 16:19:02.053  INFO 24920 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-11 16:19:02.371  INFO 24920 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-11 16:19:02.375  INFO 24920 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-11 16:19:03.481  INFO 24920 --- [restartedMain] org.spring.springboot.Application        : Started Application in 2.95 seconds (JVM running for 4.307)
+2022-10-11 16:19:04.159  INFO 24920 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-11 16:19:59.202  INFO 23016 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 23016 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-11 16:19:59.205  INFO 23016 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-11 16:20:00.534  INFO 23016 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-11 16:20:00.535  INFO 23016 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-11 16:20:00.852  INFO 23016 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-11 16:20:00.856  INFO 23016 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-11 16:20:01.773  INFO 23016 --- [restartedMain] org.spring.springboot.Application        : Started Application in 2.882 seconds (JVM running for 4.488)
+2022-10-11 16:20:05.362  INFO 23016 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-11 16:23:03.126  INFO 23524 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 23524 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-11 16:23:03.129  INFO 23524 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-11 16:23:04.486  INFO 23524 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-11 16:23:04.487  INFO 23524 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-11 16:23:04.814  INFO 23524 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-11 16:23:04.819  INFO 23524 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-11 16:23:05.962  INFO 23524 --- [restartedMain] org.spring.springboot.Application        : Started Application in 3.174 seconds (JVM running for 4.583)
+2022-10-11 16:23:08.282  INFO 23524 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-11 16:26:03.352  INFO 27600 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 27600 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-11 16:26:03.355  INFO 27600 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-11 16:26:04.688  INFO 27600 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-11 16:26:04.689  INFO 27600 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-11 16:26:05.037  INFO 27600 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-11 16:26:05.042  INFO 27600 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-11 16:26:06.064  INFO 27600 --- [restartedMain] org.spring.springboot.Application        : Started Application in 3.041 seconds (JVM running for 4.526)
+2022-10-11 16:26:06.129  INFO 27600 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-11 16:26:39.919  INFO 15476 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 15476 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-11 16:26:39.921  INFO 15476 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-11 16:26:41.166  INFO 15476 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-11 16:26:41.166  INFO 15476 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-11 16:26:41.481  INFO 15476 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-11 16:26:41.486  INFO 15476 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-11 16:26:42.420  INFO 15476 --- [restartedMain] org.spring.springboot.Application        : Started Application in 2.799 seconds (JVM running for 4.194)
+2022-10-11 16:26:44.302  INFO 15476 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-11 16:29:50.339  INFO 18016 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 18016 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-11 16:29:50.342  INFO 18016 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-11 16:29:51.595  INFO 18016 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-11 16:29:51.596  INFO 18016 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-11 16:29:51.914  INFO 18016 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-11 16:29:51.918  INFO 18016 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-11 16:29:52.848  INFO 18016 --- [restartedMain] org.spring.springboot.Application        : Started Application in 2.806 seconds (JVM running for 4.213)
+2022-10-11 16:29:56.239  INFO 18016 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-11 16:30:34.246  INFO 17084 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 17084 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-11 16:30:34.249  INFO 17084 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-11 16:30:35.589  INFO 17084 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-11 16:30:35.590  INFO 17084 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-11 16:30:35.911  INFO 17084 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-11 16:30:35.915  INFO 17084 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-11 16:30:36.850  INFO 17084 --- [restartedMain] org.spring.springboot.Application        : Started Application in 2.952 seconds (JVM running for 4.419)
+2022-10-11 16:30:39.785  INFO 17084 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-11 16:33:22.226  INFO 8152 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 8152 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-11 16:33:22.229  INFO 8152 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-11 16:33:23.482  INFO 8152 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-11 16:33:23.484  INFO 8152 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-11 16:33:23.809  INFO 8152 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-11 16:33:23.814  INFO 8152 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-11 16:33:24.796  INFO 8152 --- [restartedMain] org.spring.springboot.Application        : Started Application in 2.875 seconds (JVM running for 4.195)
+2022-10-11 16:33:26.432  INFO 8152 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-11 16:34:02.457  INFO 23196 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 23196 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-11 16:34:02.459  INFO 23196 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-11 16:34:03.692  INFO 23196 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-11 16:34:03.693  INFO 23196 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-11 16:34:04.009  INFO 23196 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-11 16:34:04.014  INFO 23196 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-11 16:34:04.944  INFO 23196 --- [restartedMain] org.spring.springboot.Application        : Started Application in 2.788 seconds (JVM running for 4.076)
+2022-10-11 16:34:06.239  INFO 23196 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-11 16:35:05.510  INFO 7008 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 7008 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-11 16:35:05.513  INFO 7008 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-11 16:35:06.762  INFO 7008 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-11 16:35:06.762  INFO 7008 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-11 16:35:07.083  INFO 7008 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-11 16:35:07.088  INFO 7008 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-11 16:35:08.037  INFO 7008 --- [restartedMain] org.spring.springboot.Application        : Started Application in 2.842 seconds (JVM running for 4.239)
+2022-10-11 16:35:12.543  INFO 7008 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-10-11 16:37:54.076  INFO 20888 --- [restartedMain] org.spring.springboot.Application        : Starting Application on DESKTOP-KD5MTNF with PID 20888 (started by Lenovo in D:\javaws\软件缺陷算法分析)
+2022-10-11 16:37:54.079  INFO 20888 --- [restartedMain] org.spring.springboot.Application        : No active profile set, falling back to default profiles: default
+2022-10-11 16:37:55.302  INFO 20888 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-10-11 16:37:55.303  INFO 20888 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2022-10-11 16:37:55.620  INFO 20888 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-10-11 16:37:55.625  INFO 20888 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-11 16:37:56.567  INFO 20888 --- [restartedMain] org.spring.springboot.Application        : Started Application in 2.796 seconds (JVM running for 4.135)
+2022-10-11 16:37:59.392  INFO 20888 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
