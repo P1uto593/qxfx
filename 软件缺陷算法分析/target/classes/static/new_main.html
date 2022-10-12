@@ -8,7 +8,7 @@
   <link rel="stylesheet"
         href="resource/plugins/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="resource/css/style.css">
-
+  <link rel="stylesheet" href="resource/css/mystyle.css">
   <script type="text/javascript" src="resource/js/jquery.min.js"></script>
   <script src="resource/js/vue.js"></script>
   <script src="resource/plugins/elementui/index.js"></script>
@@ -40,9 +40,41 @@
           </el-table>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
-      <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
-      <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
+      <el-tab-pane label="模型训练" name="second">
+        <div class="content">
+          <el-steps :space="500" :active="active" finish-status="success" align-center>
+            <el-step title="选择数据集"></el-step>
+            <el-step title="选择模型"></el-step>
+            <el-step title="训练结果"></el-step>
+          </el-steps>
+          <div v-if="active=='0'">
+            <el-table
+                    :data="dataSetTrain"
+                    stripe
+                    @selection-change="handleSelectionChange"
+                    style="width: 100%">
+              <el-table-column type="selection"
+                               fixed="left"
+                               min-width="34%">
+              </el-table-column>
+              <el-table-column
+                      prop="name"
+                      label="数据集名称"
+                      min-width="33%">
+              </el-table-column>
+              <el-table-column
+                      prop="type"
+                      label="数据集类型"
+                      min-width="33%">
+              </el-table-column>
+            </el-table>
+          </div>
+          <el-button @click="next" style="float: right">下一步</el-button>
+          <el-button @click="back">上一步</el-button>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="模型预测" name="third">模型预测</el-tab-pane>
+      <el-tab-pane label="模型管理" name="fourth">定时任务补偿</el-tab-pane>
     </el-tabs>
   </div>
 </div>
@@ -69,7 +101,19 @@
       },{
         name:'example2.csv',
         type:'训练集'
-      }]
+      },{
+        name:'example3.csv',
+        type:'测试集'
+      }],
+      dataSetTrain:[{
+        name:'example1.csv',
+        type:'训练集'
+      },{
+        name:'example2.csv',
+        type:'训练集'
+      }],
+      active:0,
+      checkIDs:[],
     },
     created() {
       let _this = this;
@@ -213,6 +257,20 @@
       zhuxiao() {
         this.nowuser = '';
         sessionStorage.clear();
+      },
+      next() {
+        if(this.active++>2) this.active=0
+      },
+      back() {
+        if(this.active==0)
+        {
+          return
+        }
+        this.active--
+      },
+      handleSelectionChange(val) {
+        this.checkIDs = val
+        console.log(this.checkIDs)
       },
     }
   })

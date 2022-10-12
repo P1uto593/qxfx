@@ -1,0 +1,8 @@
+.content{
+    width: 90%;
+    margin-left: 5%;
+}
+/deep/ .el-table__header-wrapper .el-checkbox {
+//找到表头那一行，然后把里面的复选框隐藏掉
+display: none;
+}
