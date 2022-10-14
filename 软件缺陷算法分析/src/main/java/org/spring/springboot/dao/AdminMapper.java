@@ -17,4 +17,6 @@ public interface AdminMapper {
     List<Admin> selectByUsername(@Param("admin") Admin admin);
     @Select("select * from t_admin where username=#{admin.username} and password=#{admin.password}")
     List<Admin> selectByUser(@Param("admin")Admin admin);
+
+
 }

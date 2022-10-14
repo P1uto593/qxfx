@@ -3,7 +3,11 @@ package org.spring.springboot.controller;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.spring.springboot.dao.AdminMapper;
+import org.spring.springboot.dao.DatasetMapper;
+import org.spring.springboot.dao.ModelMapper;
 import org.spring.springboot.domain.Admin;
+import org.spring.springboot.domain.Dataset;
+import org.spring.springboot.domain.model;
 import org.spring.springboot.test.KNN;
 import org.spring.springboot.test.KNN.KnnModel;
 import org.spring.springboot.test.SimpleSvm;
@@ -11,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,12 +36,6 @@ public class IndexController {
 	@Autowired
 	private AdminMapper admindao;
 
-	/**
-	 * @mapping:loginactjson 登录
-	 *
-	 * @param canshu  传进来的参数 用于处理
-	 * @return 处理结果
-	 */
 	@ResponseBody
 	// 定义loginactjson，处理登录
 	@RequestMapping(value = "loginactjson")
@@ -376,6 +375,7 @@ public class IndexController {
 		String filepath = uploadUtile(file, request);
 		return filepath;
 	}
+
 
 	// 上传文件图片等
 	public String uploadUtile(MultipartFile file, HttpServletRequest request) throws IOException {

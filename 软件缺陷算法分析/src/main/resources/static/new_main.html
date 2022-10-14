@@ -25,6 +25,7 @@
         <div>
           <el-table
                   :data="dataSetTable"
+                  v-loading="dataSetloading"
                   stripe
                   style="width: 100%">
             <el-table-column
@@ -69,13 +70,89 @@
               </el-table-column>
             </el-table>
           </div>
+          <div v-if="active=='1'">
+            <el-form :model="Aform" label-width="700px">
+              <el-form-item label="训练模型">
+                <el-select v-model="Aform.name" placeholder="请选择训练模型" :key="model">
+                  <el-option
+                          v-for="item in modelList"
+                          :key="item.name"
+                          :label="item.name"
+                          :value="item.name">
+                  </el-option>
+                </el-select>
+                <el-button @click="dialogVisible = true">新建模型</el-button>
+              </el-form-item>
+              <el-form-item label="训练次数">
+                <el-select v-model="Aform.counts" placeholder="请选择训练次数">
+                  <el-option label="500" value="500"></el-option>
+                  <el-option label="1000" value="1000"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-form>
+          </div>
+          <div v-if="active=='2'">
+            <el-table size="small" current-row-key="id" :data="dataList" stripe style="width: 100%"
+                      max-height="700"
+                      highlight-current-row>
+
+              <el-table-column v-for="i in datawidth"
+                               :prop="i.toString()" :label="i.toString()" align="center">
+
+              </el-table-column>
+            </el-table>
+          </div>
           <el-button @click="next" style="float: right">下一步</el-button>
+          <el-button v-if="active=='0'" @click="dialogDataSetVisible = true" style="float: right;margin-right: 10px">上传新数据集</el-button>
           <el-button @click="back">上一步</el-button>
         </div>
       </el-tab-pane>
       <el-tab-pane label="模型预测" name="third">模型预测</el-tab-pane>
       <el-tab-pane label="模型管理" name="fourth">定时任务补偿</el-tab-pane>
     </el-tabs>
+    <el-dialog
+            title="新建模型"
+            :visible.sync="dialogVisible"
+            width="30%">
+      <el-form :model="model" label-width="80px">
+        <el-form-item label="模型名">
+          <el-input v-model="model.name"></el-input>
+        </el-form-item>
+        <el-form-item label="模型类型">
+          <el-select v-model="model.type" placeholder="请选择模型类型">
+            <el-option label="SVM" value="SVM"></el-option>
+            <el-option label="KNN" value="KNN"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+    <el-button type="primary" @click="SubmitModel">确 定</el-button>
+  </span>
+    </el-dialog>
+    <el-dialog title="上传模型" :visible.sync="dialogDataSetVisible">
+      <el-form>
+        <el-form-item label="数据集">
+          <el-upload
+                  action="http://localhost:8080/new_addfilejson.action" :limit="1"
+                  :on-preview="handlePreview"
+                  :on-success="handsuccess"
+                  :data={username:nowuser,type:datasetType}
+          ><el-button
+                  size="small" type="primary">点击上传</el-button> </el-upload>
+        </el-form-item>
+        <el-form-item label="数据集类型">
+          <el-select v-model="datasetType" placeholder="请选择">
+            <el-option
+                  v-for="item in datasetTypeOptions" :label="item.type" :value="item.type">
+            </el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="uploadnewdataset">取消</el-button>
+        <el-button type="primary" @click="uploadnewdataset">确定</el-button>
+      </div>
+    </el-dialog>
+
   </div>
 </div>
 </body>
@@ -83,7 +160,7 @@
   var vue = new Vue({
     el: '#app',
     data: {
-      nowuser:'',
+      nowuser:'123',//测试用
       datawidth:0,
       restext:'',
       options:['KNN算法','SVM算法'],
@@ -113,35 +190,91 @@
         type:'训练集'
       }],
       active:0,
-      checkIDs:[],
+      checkDatasets:[],
+      Aform:{
+        name:'',
+        counts:''
+      },
+      datasetType:'训练集',
+      datasetTypeOptions:[
+        {
+          type:'训练集'
+        },
+        {
+          type:'测试集'
+        }
+      ],
+      dialogDataSetVisible:false,
+      modelList:[{
+        id:'',
+        name:'模型1',
+        type:'SVM',
+        owner:''
+      },{
+        id:'',
+        name:'模型2',
+        owner:'',
+        type:'KNN'
+      },],
+      model:{
+        name:'',
+        type:'',
+        owner:'123'
+      },
+      dialogVisible:false,
+      dataSetloading:false,
     },
     created() {
       let _this = this;
       var nowuser = sessionStorage.getItem("nowuser");
-
       if(nowuser && nowuser != 'null'){
         _this.nowuser = nowuser;
       }
-
-
+      this.getModelList()
+      this.getDataSetList()
     },
     methods: {
-      uploadfile: function (obj, objname, namestr) {
-        console.log(obj.target)
-        let _this = this;
-        var forms = new FormData()
-        var configs = {
-          headers: {'Content-Type': 'multipart/form-data'}
-        };
-        forms.append('file', obj.target.files[0])
-        axios.post("http://localhost:8080/addfilejson.action", forms, configs).then(res => {
-          console.log(res);
-          _this[objname][namestr] = res.data;
-          _this.$forceUpdate();
-        })
+      uploadnewdataset(){
+        this.dialogDataSetVisible=false
+        this.getDataSetList()
       },
       handlePreview(file) {
         console.log(file);
+      },
+      getModelList(){
+
+        var param={
+          owner:this.nowuser
+        }
+        axios.post("http://localhost:8080/getmodel.action",param)
+                .then(res => {
+                  this.modelList=res.data
+                })
+      },
+      getDataSetList() {
+        this.dataSetloading=true
+        var param={
+          owner:this.nowuser
+        }
+        axios.post("http://localhost:8080/getdataset.action",param)
+                .then(res => {
+                  this.dataSetTable=res.data
+                })
+        this.dataSetloading=false
+      },
+      SubmitModel(){
+        axios.post("http://localhost:8080/newModel.action",this.model)
+                .then(() => {
+                  this.$message({
+                    type: 'success',
+                    message: '新建成功!'
+                  });
+                  this.getModelList()
+                })
+                .catch(err => {
+                  alert("新建失败");
+                })
+        this.dialogVisible=false
       },
       handsuccess(response, file, fileList) {
         this.formData.csv = response;
@@ -259,7 +392,30 @@
         sessionStorage.clear();
       },
       next() {
-        if(this.active++>2) this.active=0
+        if(this.active==3)
+        {
+          this.active==0
+          return
+        }
+        this.active++
+        if(this.active==2){
+          this.train()
+        }
+      },
+      train(){
+        let data={
+          owner:this.nowuser,
+          dataset:this.checkDatasets,
+          model:this.Aform.name,
+          counts: this.Aform.counts
+        }
+        axios.post("http://localhost:8080/train.action", data)
+                .then(res => {
+
+                })
+                .catch(err => {
+                  
+                })
       },
       back() {
         if(this.active==0)
@@ -269,8 +425,7 @@
         this.active--
       },
       handleSelectionChange(val) {
-        this.checkIDs = val
-        console.log(this.checkIDs)
+        checkDatasets = val
       },
     }
   })
