@@ -15,7 +15,6 @@ public class SimpleSvm
 	private double[] w;
 	private final double lambda;
 	private double lr = 0.001;//0.00001
-	private final double threshold = 0.001;
 	private double cost;
 	private double min_cost;
 	private double[] grad;

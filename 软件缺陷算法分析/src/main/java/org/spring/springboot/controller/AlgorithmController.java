@@ -44,7 +44,7 @@ public class AlgorithmController {
         temp.put("model", data.get("model"));
         List<model> model = modeldao.selectOne(temp);
         Double cost = 0.0;
-        if ("SVM".equals(model.get(0).getType())) {
+        if ("Ridge".equals(model.get(0).getType())) {
 
             //resultmap.put("type", "当前分析方法为SVM分类分析法");
 
@@ -227,7 +227,7 @@ public class AlgorithmController {
         temp.put("owner", data.get("owner"));
         temp.put("model", data.get("model"));
         List<model> model = modeldao.selectOne(temp);
-        if ("SVM".equals(model.get(0).getType())) {
+        if ("Ridge".equals(model.get(0).getType())) {
 
             //resultmap.put("type", "当前分析方法为SVM分类分析法");
 
@@ -277,7 +277,7 @@ public class AlgorithmController {
         record.setModel((String) data.get("model"));
         record.setOwner((String) data.get("owner"));
         record.setDataset((String) data.get("dataset"));
-        record.setType("测试集");
+        record.setType("使用集");
         recorddao.insert(record);
         return resultmap;
     }

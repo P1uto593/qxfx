@@ -282,7 +282,7 @@
           </el-form-item>
           <el-form-item label="模型类型">
             <el-select v-model="model.type" placeholder="请选择模型类型">
-              <el-option label="SVM" value="SVM"></el-option>
+              <el-option label="Ridge" value="Ridge"></el-option>
               <el-option label="KNN" value="KNN"></el-option>
             </el-select>
           </el-form-item>
@@ -365,7 +365,7 @@
       datawidth3:0,
       restext:'',
       modelechartsVisible:false,
-      options:['KNN算法','SVM算法'],
+      options:['KNN算法','Ridge算法'],
       dataList: [],
       dataList1:[],
       formData: {'csv':'','type':'KNN算法'},// 表单数据
@@ -415,7 +415,7 @@
           type:'训练集'
         },
         {
-          type:'测试集'
+          type:'使用集'
         }
       ],
       dialogDataSetVisible:false,
@@ -583,7 +583,7 @@
                     return item.type == '训练集'
                   })
                   this.dataSetTest=res.data.filter((item) => {
-                    return item.type == '测试集'
+                    return item.type == '使用集'
                   })
                   console.log(res.data)
                 })
@@ -828,7 +828,7 @@
       },
       getTestResult(){
         let data={
-          type:'测试集',
+          type:'使用集',
           owner:this.nowuser,
           model:this.Bform.name,
         }
