@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>注册</title>
+
+  <link rel="stylesheet" href="resource/plugins/elementui/index.css">
+  <link rel="stylesheet"
+        href="resource/plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="resource/css/style.css">
+  <link rel="stylesheet" href="resource/css/login.css">
+
+  <script type="text/javascript" src="resource/js/jquery.min.js"></script>
+  <script src="resource/js/vue.js"></script>
+  <script src="resource/plugins/elementui/index.js"></script>
+  <script src="resource/js/axios-0.18.0.js"></script>
+</head>
+<body>
+<div id="app">
+  <div class="container" style="height: 950px">
+    <div class="login-wrapper">
+      <div class="header">Login</div>
+      <div class="form-wrapper">
+        <el-input v-model="registData.username" placeholder="username" class="input-item"></el-input>
+        <el-input v-model="registData.password" placeholder="password" show-password type="password" class="input-item"></el-input>
+        <el-input v-model="registData.repassword" placeholder="re-password" show-password type="password" class="input-item"></el-input>
+        <el-button type="primary" @click="handleRegistAct()" class="btn">注册</el-button>
+      </div>
+      <div class="msg">
+        <el-button type="text" @click="handleLogin()">Login in</el-button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script>
+  var vue = new Vue({
+    el: '#app',
+    data: {
+      nowuser:'',
+      datawidth:0,
+      restext:'',
+      options:['KNN算法','SVM算法'],
+      dataList: [],
+      formData: {'csv':'','type':'KNN算法'},// 表单数据
+      loginData: {},// 表单数据
+      registData: {},// 表单数据
+      dialogFormVisible: false,
+      LoginFormVisible: false,
+      registFormVisible: false,
+    },
+    created() {
+      let _this = this;
+      var nowuser = sessionStorage.getItem("nowuser");
+
+      if(nowuser && nowuser != 'null'){
+        _this.nowuser = nowuser;
+      }
+
+
+    },
+    methods: {
+      uploadfile: function (obj, objname, namestr) {
+        console.log(obj.target)
+        let _this = this;
+        var forms = new FormData()
+        var configs = {
+          headers: {'Content-Type': 'multipart/form-data'}
+        };
+        forms.append('file', obj.target.files[0])
+        axios.post("http://localhost:8080/addfilejson.action", forms, configs).then(res => {
+          console.log(res);
+          _this[objname][namestr] = res.data;
+          _this.$forceUpdate();
+        })
+      },
+      handlePreview(file) {
+        console.log(file);
+      },
+      handsuccess(response, file, fileList) {
+        this.formData.csv = response;
+      },
+      handleRegistAct(){
+        let _this = this;
+        console.log(_this.registData)
+        axios.post("http://localhost:8080/registactjson.action", _this.registData)
+                .then(res => {
+                  console.log(res.data);
+                  var obj = res.data;
+
+                  var message = obj['message'];
+
+                  alert(message);
+
+                  if(message == "注册成功，请登录"){
+                    window.location = "login.html";
+                  }
+
+                })
+                .catch(err => {
+                  console.log(err)
+                  alert("注册失败");
+                })
+      },
+      handleLoginAct() {
+
+        let _this = this;
+
+        axios.post("http://localhost:8080/loginactjson.action", _this.loginData)
+                .then(res => {
+                  console.log(res.data);
+                  var obj = res.data;
+
+                  var message = obj['message'];
+
+                  alert(message);
+
+                  if(message == "登录成功"){
+                    _this.LoginFormVisible = false;
+
+                    _this.nowuser = obj['mingzi'];
+                    sessionStorage.setItem('nowuser',_this.nowuser);
+
+                    window.location = "new_main.html";
+
+                  }
+
+                })
+                .catch(err => {
+                  console.log(err)
+                  alert("登录失败");
+                })
+      },
+      // 添加
+      handleAdd() {
+
+        let _this = this;
+
+        if(_this.nowuser == '' || _this.nowuser == 'null'){
+          this.$message('请先登录');
+          return;
+        }
+
+        axios.post("http://localhost:8080/fenxiactjson.action", _this.formData)
+                .then(res => {
+                  console.log(res.data);
+                  var obj = res.data;
+                  alert("分析成功");
+                  _this.dialogFormVisible = false;
+
+                  _this.restext = obj['type'] + ",总数据为：" + obj['zongshu'] + "条," + ",分析正确 " + obj['zhengqueshu'] + "条,";
+
+                  var jieguo = obj['jieguo'];
+
+                  _this.restext += "clean项：" + jieguo['clean'] + "条,";
+                  _this.restext += "buggy项：" + jieguo['buggy'] + "条";
+
+                  for(var i = 0;i < obj['result'].length;i++){
+
+                    var resitem = obj['result'][i];
+
+                    var dataitem = {};
+                    for(var j = 0;j < resitem.length;j++){
+                      dataitem[j] = resitem[j];
+                    }
+
+                    _this.datawidth = obj['result'][0].length - 1;
+
+                    _this.dataList.push(dataitem);
+                  }
+
+                  console.log(_this.dataList);
+
+
+                })
+                .catch(err => {
+                  console.log(err)
+                  alert("分析失败");
+                })
+      },
+      // 重置表单
+      resetForm(type) {
+      },
+      // 弹出添加窗口
+      handleCreate() {
+        this.dialogFormVisible = true;
+      },
+      handleLogin() {
+        window.location = "new_login.html";
+      },
+      handleRegist() {
+        window.location = "new_regist.html";
+      },
+      zhuxiao() {
+        this.nowuser = '';
+        sessionStorage.clear();
+      },
+    }
+  })
+</script>
+</html>

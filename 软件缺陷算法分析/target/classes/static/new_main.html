@@ -13,11 +13,17 @@
   <script src="resource/js/vue.js"></script>
   <script src="resource/plugins/elementui/index.js"></script>
   <script src="resource/js/axios-0.18.0.js"></script>
+  <script src="resource/js/echarts.min.js"></script>
 </head>
 <body class="hold-transition">
 <div id="app">
-  <div style="width: 90%;margin-left: 5%">
-    <h1>软件缺陷分析系统</h1>
+  <div style="width: 90%;margin-left: 5%;height: 35px;padding-top: 5px">
+    <div style="font-size: 30px;float: left">软件缺陷分析系统</div>
+    <div style="float: right">
+      <el-button v-if="nowuser == ''" type="primary" class="butT" @click="handleLogin()">登录</el-button>
+      <el-button v-if="nowuser == ''" type="primary" class="butT" @click="handleRegist()">注册</el-button>
+      <el-button v-if="nowuser != ''" type="primary" class="butT" @click="zhuxiao()">注销</el-button>
+    </div>
   </div>
   <div class="app-container">
     <el-tabs v-model="activeName" style="width: 94%;margin-left: 3%">
@@ -31,12 +37,19 @@
             <el-table-column
                     prop="name"
                     label="数据集名称"
-                    min-width="50%">
+                    min-width="34%">
             </el-table-column>
             <el-table-column
                     prop="type"
                     label="数据集类型"
-                    min-width="50%">
+                    min-width="33%">
+            </el-table-column>
+            <el-table-column
+                    label="查看"
+                    min-width="33%">
+              <template slot-scope="scope">
+                <el-button type="text" @click="lookdataset(scope.row.name)" size="small">查看</el-button>
+              </template>
             </el-table-column>
           </el-table>
         </div>
@@ -54,9 +67,10 @@
                     stripe
                     @selection-change="handleSelectionChange"
                     style="width: 100%">
-              <el-table-column type="selection"
-                               fixed="left"
-                               min-width="34%">
+              <el-table-column min-width="34%">
+                <template slot-scope="scope">
+                  <el-radio :label="scope.row.name" v-model="checkDatasets">&nbsp;</el-radio>
+                </template>
               </el-table-column>
               <el-table-column
                       prop="name"
@@ -86,15 +100,25 @@
               <el-form-item label="训练次数">
                 <el-select v-model="Aform.counts" placeholder="请选择训练次数">
                   <el-option label="500" value="500"></el-option>
-                  <el-option label="1000" value="1000"></el-option>
+                  <el-option label="7000" value="7000"></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="步长">
+                <el-select v-model="Aform.step" placeholder="请选择步长">
+                  <el-option label="0.001" value="0.001"></el-option>
+                  <el-option label="0.0001" value="0.0001"></el-option>
                 </el-select>
               </el-form-item>
             </el-form>
           </div>
           <div v-if="active=='2'">
+            <div style="height: 50px">
+              准确率为{{trainAcc}}
+            </div>
             <el-table size="small" current-row-key="id" :data="dataList" stripe style="width: 100%"
-                      max-height="700"
-                      highlight-current-row>
+                      max-height="650"
+                      highlight-current-row
+                      v-loading="trainTable">
 
               <el-table-column v-for="i in datawidth"
                                :prop="i.toString()" :label="i.toString()" align="center">
@@ -102,13 +126,150 @@
               </el-table-column>
             </el-table>
           </div>
+          <div v-if="active=='3'">
+              <el-table
+                      :data="trainResult"
+                      stripe
+                      style="width: 100%"
+                      max-height="700"
+                      v-loading="trainResultLoading">
+                <el-table-column min-width="34%" prop="model" label="模型名">
+
+                </el-table-column>
+                <el-table-column
+                        prop="acc"
+                        label="模型准确率"
+                        min-width="33%">
+                </el-table-column>
+                <el-table-column
+                        prop="dataset"
+                        label="使用数据集"
+                        min-width="33%">
+                </el-table-column>
+              </el-table>
+          </div>
           <el-button @click="next" style="float: right">下一步</el-button>
           <el-button v-if="active=='0'" @click="dialogDataSetVisible = true" style="float: right;margin-right: 10px">上传新数据集</el-button>
           <el-button @click="back">上一步</el-button>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="模型预测" name="third">模型预测</el-tab-pane>
-      <el-tab-pane label="模型管理" name="fourth">定时任务补偿</el-tab-pane>
+      <el-tab-pane label="模型预测" name="third">
+        <div class="content">
+          <el-steps :space="500" :active="active1" finish-status="success" align-center>
+            <el-step title="选择数据集"></el-step>
+            <el-step title="选择模型"></el-step>
+            <el-step title="预测结果"></el-step>
+          </el-steps>
+          <div v-if="active1=='0'">
+            <el-table
+                    :data="dataSetTest"
+                    stripe
+                    style="width: 100%">
+              <el-table-column min-width="34%">
+                <template slot-scope="scope">
+                  <el-radio :label="scope.row.name" v-model="checkDatasets1">&nbsp;</el-radio>
+                </template>
+              </el-table-column>
+              <el-table-column
+                      prop="name"
+                      label="数据集名称"
+                      min-width="33%">
+              </el-table-column>
+              <el-table-column
+                      prop="type"
+                      label="数据集类型"
+                      min-width="33%">
+              </el-table-column>
+            </el-table>
+          </div>
+          <div v-if="active1=='1'">
+            <el-form :model="Bform" label-width="700px">
+              <el-form-item label="预测模型">
+                <el-select v-model="Bform.name" placeholder="请选择预测模型" :key="model">
+                  <el-option
+                          v-for="item in modelList"
+                          :key="item.name"
+                          :label="item.name"
+                          :value="item.name">
+                  </el-option>
+                </el-select>
+                <el-button @click="dialogVisible = true">新建模型</el-button>
+              </el-form-item>
+            </el-form>
+          </div>
+          <div v-if="active1=='2'">
+            <el-button @click="download">导出</el-button>
+            <el-table size="small" current-row-key="id" :data="dataList1" stripe style="width: 100%"
+                      max-height="650"
+                      highlight-current-row
+                      v-loading="testTable">
+
+              <el-table-column v-for="i in datawidth1"
+                               :prop="i.toString()" :label="i.toString()" align="center">
+
+              </el-table-column>
+            </el-table>
+          </div>
+          <div v-if="active1=='3'">
+            <el-table
+                    :data="testResult"
+                    stripe
+                    style="width: 100%"
+                    max-height="700"
+                    v-loading="testResultLoading">
+              <el-table-column min-width="34%" prop="model" label="模型名">
+
+              </el-table-column>
+              <el-table-column
+                      prop="acc"
+                      label="模型准确率"
+                      min-width="33%">
+              </el-table-column>
+              <el-table-column
+                      prop="dataset"
+                      label="使用数据集"
+                      min-width="33%">
+              </el-table-column>
+            </el-table>
+          </div>
+          <el-button @click="next1" style="float: right">下一步</el-button>
+          <el-button v-if="active1=='0'" @click="dialogDataSetVisible = true" style="float: right;margin-right: 10px">上传新数据集</el-button>
+          <el-button @click="back1">上一步</el-button>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="模型管理" name="fourth">
+        <el-table
+                :data="modelList"
+                stripe
+                style="width: 100%"
+                max-height="700"
+                v-loading="modelmanage">
+          <el-table-column
+                  min-width="25%"
+                  prop="name"
+                  label="模型名">
+          </el-table-column>
+          <el-table-column
+                  min-width="25%"
+                  prop="type"
+                  label="模型类型">
+          </el-table-column>
+          <el-table-column
+                  prop="acc"
+                  label="模型准确率"
+                  min-width="25%">
+          </el-table-column>
+          <el-table-column
+                  label="操作"
+                  min-width="25%">
+            <template slot-scope="scope">
+              <el-button type="text" @click="lookmodel(scope.row.name)" size="small">查看</el-button>
+              <el-button type="text" @click="deletemodel(scope.row.name)" size="small">删除</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+        <el-button @click="dialogVisible = true" style="float: right">新建模型</el-button>
+      </el-tab-pane>
     </el-tabs>
     <el-dialog
             title="新建模型"
@@ -152,7 +313,41 @@
         <el-button type="primary" @click="uploadnewdataset">确定</el-button>
       </div>
     </el-dialog>
+    <el-dialog title="训练过程"
+               :visible.sync="modelechartsVisible">
+        <div id="show" style="height: 500px;width: 500px">
+          11111111
+        </div>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="modelechartsVisible=false">返回</el-button>
+      </div>
+    </el-dialog>
+    <el-dialog title="模型查看"
+               :visible.sync="lookmodelVisible">
+      <el-table size="small" current-row-key="id" :data="modelforlook" stripe style="width: 100%"
+                max-height="600"
+                highlight-current-row
+                v-loading="trainTable">
 
+        <el-table-column v-for="i in datawidth2"
+                         :prop=i.toString() :label="i.toString()" align="center">
+
+        </el-table-column>
+      </el-table>
+    </el-dialog>
+    <el-dialog title="数据集查看"
+               :visible.sync="lookdatasetVisible">
+      <el-table size="small" current-row-key="id" :data="datasetforlook" stripe style="width: 100%"
+                max-height="600"
+                highlight-current-row
+                v-loading="trainTable">
+
+        <el-table-column v-for="i in datawidth3"
+                         :prop=(i-1).toString() :label="(i-1).toString()" align="center">
+
+        </el-table-column>
+      </el-table>
+    </el-dialog>
   </div>
 </div>
 </body>
@@ -162,15 +357,22 @@
     data: {
       nowuser:'123',//测试用
       datawidth:0,
+      datawidth1:0,
+      datawidth2:0,
+      datawidth3:0,
       restext:'',
+      modelechartsVisible:false,
       options:['KNN算法','SVM算法'],
       dataList: [],
+      dataList1:[],
       formData: {'csv':'','type':'KNN算法'},// 表单数据
       loginData: {},// 表单数据
       registData: {},// 表单数据
       dialogFormVisible: false,
       LoginFormVisible: false,
       registFormVisible: false,
+      trainTable:false,
+      testTable:false,
       activeName:'first',
       dataSetTable:[{
         name:'example1.csv',
@@ -189,11 +391,20 @@
         name:'example2.csv',
         type:'训练集'
       }],
+      dataSetTest:[],
       active:0,
+      active1:0,
       checkDatasets:[],
+      checkDatasets1:[],
       Aform:{
         name:'',
-        counts:''
+        counts:'',
+        step:0.001,
+      },
+      Bform:{
+        name:'',
+        counts:'',
+        step:0.001,
       },
       datasetType:'训练集',
       datasetTypeOptions:[
@@ -209,7 +420,8 @@
         id:'',
         name:'模型1',
         type:'SVM',
-        owner:''
+        owner:'',
+        acc:0.0
       },{
         id:'',
         name:'模型2',
@@ -223,6 +435,27 @@
       },
       dialogVisible:false,
       dataSetloading:false,
+      trainAcc:'',
+      trainResult:[{
+        model:'test',
+        acc:'1',
+        dataset:'1',
+        type:'1'
+      }],
+      testResult:[{
+        model:'test',
+        acc:'1',
+        dataset:'1',
+        type:'1'
+      }],
+      trainResultLoading:false,
+      testResultLoading:false,
+      modelmanage:false,
+      echartsdata:[],
+      lookmodelVisible:false,
+      modelforlook:[],
+      datasetforlook:[],
+      lookdatasetVisible:false,
     },
     created() {
       let _this = this;
@@ -234,6 +467,90 @@
       this.getDataSetList()
     },
     methods: {
+      download(){
+        let data ={
+          name:this.checkDatasets1,
+          owner:this.nowuser
+        }
+        axios.post("http://localhost:8080/download.action",data)
+                .then(res => {
+                  const xlsx = 'application/vnd.ms-excel'
+                  const blob = new Blob([res.data], { type: xlsx })
+                  const a = document.createElement('a') // 转换完成，创建一个a标签用于下载
+                  // const name = res.headers['content-disposition']
+                  // a.download = name.split('=')[1]
+                  a.download = 'predict_'+this.checkDatasets1
+                  a.href = window.URL.createObjectURL(blob)
+                  a.click()
+                  a.remove()
+                  document.body.removeChild(a)
+                })
+      },
+      lookdataset(name){
+        this.lookdatasetVisible=true
+        let data={
+          name:name,
+          owner:this.nowuser
+        }
+        axios.post("http://localhost:8080/lookdataset.action",data)
+                .then(res => {
+                  this.datasetforlook=res.data
+                  this.datawidth3=61
+                })
+        this.lookdatasetVisible=true
+      },
+      lookmodel(name){
+        this.lookmodelVisible=true
+        let data={
+          name:name,
+          owner:this.nowuser
+        }
+        axios.post("http://localhost:8080/lookmodel.action",data)
+                .then(res => {
+                  this.modelforlook=res.data
+                  this.datawidth2=61
+                  console.log(this.modelforlook)
+                })
+        this.lookmodelVisible=true
+      },
+      createecharts(){
+        this.modelechartsVisible=true
+        let data={
+          name:this.Aform.name,
+          owner:this.nowuser
+        }
+        axios.post("http://localhost:8080/getecharts.action",data)
+                .then(res => {
+                  this.echartsdata=res.data
+                  this.$nextTick(() => {
+                    let myChart = echarts.init(document.getElementById('show'));
+                    let option = {
+                      title: {
+                        text: '训练效果'
+                      },
+                      tooltip: {},
+                      legend: {
+                        data:['Acc']
+                      },
+                      xAxis: {
+                        data:Array.from({length:this.echartsdata.length},(item, index)=> index+1)
+                      },
+                      yAxis: {},
+                      series: [{
+                        name: '准确率',
+                        type: 'line',
+                        data: this.echartsdata
+                      }]
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                })
+        })
+        console.log(this.echartsdata)
+
+        this.modelechartsVisible=true
+      },
       uploadnewdataset(){
         this.dialogDataSetVisible=false
         this.getDataSetList()
@@ -259,6 +576,13 @@
         axios.post("http://localhost:8080/getdataset.action",param)
                 .then(res => {
                   this.dataSetTable=res.data
+                  this.dataSetTrain=res.data.filter((item) => {
+                    return item.type == '训练集'
+                  })
+                  this.dataSetTest=res.data.filter((item) => {
+                    return item.type == '测试集'
+                  })
+                  console.log(res.data)
                 })
         this.dataSetloading=false
       },
@@ -382,18 +706,133 @@
         this.dialogFormVisible = true;
       },
       handleLogin() {
-        window.location = "login.html";
+        window.location = "new_login.html";
       },
       handleRegist() {
-        window.location = "regist.html";
+        window.location = "new_regist.html";
       },
       zhuxiao() {
         this.nowuser = '';
         sessionStorage.clear();
       },
       next() {
-        if(this.active++>2) this.active=0
-        console.log(this.active)
+        if(this.active==3)
+        {
+          this.active=0
+          console.log("0")
+          return
+        }
+        this.active++
+        if(this.active==2){
+          this.train()
+        }
+        if(this.active==3){
+          this.trainResultLoading=true
+          this.getTrainResult()
+          this.createecharts()
+          this.trainResultLoading=false
+        }
+      },
+      next1() {
+        if(this.active1==3)
+        {
+          this.active1=0
+          console.log("0")
+          return
+        }
+        this.active1++
+        if(this.active1==2){
+          this.test()
+        }
+        if(this.active1==3){
+          this.testResultLoading=true
+          this.getTestResult()
+          this.testResultLoading=false
+        }
+      },
+      train(){
+        let data={
+          owner:this.nowuser,
+          dataset:this.checkDatasets,
+          model:this.Aform.name,
+          counts: this.Aform.counts,
+          step:this.Aform.step
+        }
+        this.trainTable=true
+        axios.post("http://localhost:8080/train.action", data)
+                .then(res => {
+                  let obj = res.data;
+                  for(let i = 0; i < obj['result'].length; i++){
+
+                    let resitem = obj['result'][i];
+
+                    let dataitem = {};
+                    for(let j = 0; j < resitem.length; j++){
+                      dataitem[j] = resitem[j];
+                    }
+
+                    this.datawidth = obj['result'][0].length - 1;
+                    this.trainAcc=obj['准确率']
+                    this.dataList.push(dataitem);
+                  }
+                  this.trainTable=false
+                })
+                .catch(err => {
+
+                })
+        this.getModelList()
+        this.trainTable=false
+      },
+      test(){
+        let data={
+          owner:this.nowuser,
+          dataset:this.checkDatasets1,
+          model:this.Bform.name,
+        }
+        this.testTable=true
+        axios.post("http://localhost:8080/test.action", data)
+                .then(res => {
+                  let obj = res.data;
+                  for(let i = 0; i < obj['result'].length; i++){
+
+                    let resitem = obj['result'][i];
+
+                    let dataitem = {};
+                    for(let j = 0; j < resitem.length; j++){
+                      dataitem[j] = resitem[j];
+                    }
+
+                    this.datawidth1 = obj['result'][0].length - 1;
+                    this.dataList1.push(dataitem);
+                  }
+                  this.testTable=false
+                })
+                .catch(err => {
+
+                })
+        this.trainTable=false
+      },
+      getTrainResult(){
+        let data={
+          type:'训练集',
+          owner:this.nowuser,
+          model:this.Aform.name,
+        }
+        axios.post("http://localhost:8080/trainresult.action",data)
+                .then(res => {
+                  this.trainResult=res.data;
+                })
+      },
+      getTestResult(){
+        let data={
+          type:'测试集',
+          owner:this.nowuser,
+          model:this.Bform.name,
+        }
+        axios.post("http://localhost:8080/testresult.action",data)
+                .then(res => {
+                  this.testResult=res.data;
+                })
       },
       back() {
         if(this.active==0)
@@ -402,9 +841,26 @@
         }
         this.active--
       },
-      handleSelectionChange(val) {
-        checkDatasets = val
+      back1() {
+        if(this.active1==0)
+        {
+          return
+        }
+        this.active1--
       },
+      deletemodel(name){
+        let data={
+          name:name,
+          owner:this.nowuser
+        }
+        axios.post("http://localhost:8080/deletemodel.action",data)
+                .then(() => {
+                  this.getModelList()
+                }).finally(() => {
+          this.modelmanage=true
+          this.modelmanage=false
+        })
+      }
     }
   })
 </script>

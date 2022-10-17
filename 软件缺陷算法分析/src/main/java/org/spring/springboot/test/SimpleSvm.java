@@ -1,8 +1,6 @@
 package org.spring.springboot.test;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,20 +8,28 @@ import java.util.StringTokenizer;
 
 public class SimpleSvm 
 {
+	private String modelname;
+	private String filePath;
 	private int exampleNum;
 	private int exampleDim;
 	private double[] w;
 	private final double lambda;
-	private final double lr = 0.001;//0.00001
+	private double lr = 0.001;//0.00001
 	private final double threshold = 0.001;
 	private double cost;
+	private double min_cost;
 	private double[] grad;
 	private double[] yp;
-	public SimpleSvm(double paramLambda)
+	//可以初始化 1：w 2:lr 3:threshold(退出值) 4:lambda(正则)
+	//保存的 w
+	public SimpleSvm(double paramLambda,Double step,String name,String filepath,Double cost)
 	{
 
 		lambda = paramLambda;	
-		
+		lr=step;
+		modelname=name;
+		filePath=filepath;
+		min_cost=cost;
 	}
 	
 	private void CostAndGrad(double[][] X,double[] y)
@@ -71,34 +77,81 @@ public class SimpleSvm
 		}
 	}
 	
-	public void Train(double[][] X,double[] y,int maxIters)
+	public Double Train(double[][] X,double[] y,int maxIters)
 	{
 		exampleNum = X.length;
-		if(exampleNum <=0) 
-		{
-			System.out.println("num of example <=0!");
-			return;
-		}
 		exampleDim = X[0].length;
 		w = new double[exampleDim];
+		File file=new File(filePath);
+		readFromFile(file);
+		//初始化w
 		grad = new double[exampleDim];
 		yp = new double[exampleNum];
-		
+		int save=0;
 		for(int iter=0;iter<maxIters;iter++)
 		{
 			
 			CostAndGrad(X,y);
 //			System.out.println("cost:"+cost);
-			if(cost< threshold)
+
+			if(cost< min_cost)
 			{
-				break;
+				min_cost=cost;
+				save=1;
+				continue;
 			}
 			update();
-			
+		}
+		if(save==1)
+		{
+			writeToFile(w,file);
+		}
+		//writeToFile(w,file);
+		return min_cost;
+	}
+	private void writeToFile(double[] w,File file){
+		FileWriter out = null;
+		try {
+			out = new FileWriter(file);
+			//二维数组按行存入到文件中
+			for (int i = 0; i < w.length; i++) {
+				//将每个元素转换为字符串
+				String content = String.valueOf(w[i]) + "";
+				out.write(content + " ");
+			}
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	private void readFromFile(File file){
+		if(file.length()==0)
+		{
+			return ;
+		}
+		BufferedReader bufferedReader = null;
+		try {
+			InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(file));
+			bufferedReader = new BufferedReader(inputStreamReader);
+			String line;
+				line = bufferedReader.readLine();
+				if(null != line){
+					//将按行读取的字符串按空格分割，得到一个string数组
+					String[] strings = line.split(" ");
+
+					for(int k = 0;k<strings.length-1;k++){
+						w[k] = Double.parseDouble(strings[k]);
+					}
+				}
+			}
+		 catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	public int predict(double[] x)
 	{
+		File file=new File(filePath);
+		readFromFile(file);
 		double pre=0;
 		for(int j=0;j<x.length;j++)
 		{
@@ -120,26 +173,7 @@ public class SimpleSvm
 		
 		return typeall;
 	}
-	
-	public void Test(double[][] testX,double[] testY)
-	{
-		int error=0;
-		for(int i=0;i<testX.length;i++)
-		{	
-			
-			if(predict(testX[i]) != testY[i])
-			{
-				
-				error++;
-			}
-		}
-		System.out.println("total:"+testX.length);
-		System.out.println("error:"+error);
-		System.out.println("error rate:"+((double)error/testX.length));
-		System.out.println("acc rate:"+((double)(testX.length-error)/testX.length));
-	}
-	
-	
+
 	public void loadAarray(double[][] X, double[] y, ArrayList<ArrayList<String>> dataall) {
 		
 		
@@ -159,58 +193,7 @@ public class SimpleSvm
 		}
 		
 	}
-	
-	
-	public void loadData(double[][]X,double[] y,String trainFile) throws IOException
-	{
-		
-		File file = new File(trainFile);
-		RandomAccessFile raf = new RandomAccessFile(file,"r");
-		StringTokenizer tokenizer,tokenizer2; 
 
-		int index=0;
-		while(true)
-		{
-			String line = raf.readLine();
-			
-			if(line == null) break;
-			tokenizer = new StringTokenizer(line," ");
-			y[index] = Double.parseDouble(tokenizer.nextToken());
-			//System.out.println(y[index]);
-			while(tokenizer.hasMoreTokens())
-			{
-				tokenizer2 = new StringTokenizer(tokenizer.nextToken(),":");
-				int k = Integer.parseInt(tokenizer2.nextToken());
-				double v = Double.parseDouble(tokenizer2.nextToken());
-				X[index][k] = v;
-				//System.out.println(k);
-				//System.out.println(v);				
-			}	
-			X[index][0] =1;
-			index++;		
-		}
-	}
-	
-	public static void main(String[] args) throws IOException 
-	{	
-		
-		SimpleSvm svm = new SimpleSvm(0.0001);
-		double[] y = new double[400];
-		double[][] X = new double[400][11];
-		String trainFile = "train_bc";
-		svm.loadData(X,y,trainFile);
-		
-		svm.Train(X,y,7000);
-		
-		System.out.println(y[1]);
-		
-		double[] test_y = new double[283];
-		double[][] test_X = new double[283][11];
-		String testFile = "test_bc";
-		svm.loadData(test_X,test_y,testFile);
-		svm.Test(test_X, test_y);
-		
-	}
 
 
 

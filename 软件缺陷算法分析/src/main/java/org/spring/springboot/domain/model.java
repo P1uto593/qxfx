@@ -3,6 +3,25 @@ package org.spring.springboot.domain;
 public class model {
     private Integer id;
     private String owner;
+    private Double acc;
+
+    private Double cost;
+
+    public Double getCost() {
+        return cost;
+    }
+
+    public void setCost(Double cost) {
+        this.cost = cost;
+    }
+
+    public Double getAcc() {
+        return acc;
+    }
+
+    public void setAcc(Double acc) {
+        this.acc = acc;
+    }
 
     public String getOwner() {
         return owner;

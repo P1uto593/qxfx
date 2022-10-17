@@ -197,7 +197,7 @@ public class IndexController {
 
 			// 调用 训练集和测试集进行对比测试
 
-			SimpleSvm svm = new SimpleSvm(0.0001);
+			SimpleSvm svm = new SimpleSvm(0.0001,0.0,"a","a",0.0);
 
 			Integer xlength = dataall.get(0).size();
 			Integer ylength = dataall.size();
