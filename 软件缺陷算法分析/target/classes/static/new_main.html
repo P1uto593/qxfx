@@ -238,7 +238,7 @@
             <el-button @click="back1">上一步</el-button>
           </div>
         </el-tab-pane>
-        <el-tab-pane label="模型管理" name="fourth">
+        <el-tab-pane label="模型管理" @click="" name="fourth">
           <el-table
                   :data="modelList"
                   stripe
@@ -336,7 +336,7 @@
           </el-table-column>
         </el-table>
       </el-dialog>
-      <el-dialog title="数据集查看"
+      <el-dialog title=""
                  :visible.sync="lookdatasetVisible">
         <el-table size="small" current-row-key="id" :data="datasetforlook" stripe style="width: 100%"
                   max-height="600"
@@ -402,12 +402,12 @@
       Aform:{
         name:'',
         counts:'',
-        step:0.001,
+        step:''
       },
       Bform:{
         name:'',
         counts:'',
-        step:0.001,
+        step:'',
       },
       datasetType:'训练集',
       datasetTypeOptions:[
@@ -572,6 +572,7 @@
                 })
       },
       getDataSetList() {
+        this.dataSetTable=[]
         this.dataSetloading=true
         var param={
           owner:this.nowuser
@@ -722,6 +723,9 @@
         if(this.active==3)
         {
           this.active=0
+          this.trainResult=[]
+          this.trainTable=true
+          this.trainTable=false
           console.log("0")
           return
         }
@@ -750,7 +754,6 @@
         if(this.active1==3){
           this.testResultLoading=true
           this.getTestResult()
-          this.testResultLoading=false
         }
       },
       train(){
@@ -816,6 +819,7 @@
         this.trainTable=false
       },
       getTrainResult(){
+        this.modelmanage=true
         let data={
           type:'训练集',
           owner:this.nowuser,
@@ -824,9 +828,12 @@
         axios.post("http://localhost:8080/trainresult.action",data)
                 .then(res => {
                   this.trainResult=res.data;
+                  this.getModelList();
                 })
+        this.modelmanage=false
       },
       getTestResult(){
+        this.testResultLoading=true;
         let data={
           type:'使用集',
           owner:this.nowuser,
@@ -835,6 +842,7 @@
         axios.post("http://localhost:8080/testresult.action",data)
                 .then(res => {
                   this.testResult=res.data;
+                  this.testResultLoading=false;
                 })
       },
       back() {
@@ -856,11 +864,11 @@
           name:name,
           owner:this.nowuser
         }
+        this.modelmanage=true
         axios.post("http://localhost:8080/deletemodel.action",data)
                 .then(() => {
                   this.getModelList()
                 }).finally(() => {
-          this.modelmanage=true
           this.modelmanage=false
         })
       }

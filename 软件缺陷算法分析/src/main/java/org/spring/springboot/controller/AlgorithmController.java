@@ -78,14 +78,14 @@ public class AlgorithmController {
                 }
             }
 
-            for (int i = 0; i < Math.floor(dataall.size() / 3); i++) {
+            for (int i = 0; i < Math.floor(dataall.size() / 3)*2; i++) {
 
                 trainall.add(dataall.get(i));
             }
 
             // 调用 训练集和测试集进行对比测试
 
-            SimpleSvm svm = new SimpleSvm(0.0001, (Double) data.get("step"), (String) data.get("model"), modelpath, model.get(0).getCost());
+            SimpleSvm svm = new SimpleSvm(0.0001, Double.parseDouble((String) data.get("step")), (String) data.get("model"), modelpath, model.get(0).getCost());
 
             Integer xlength = dataall.get(0).size();
             Integer ylength = dataall.size();

@@ -93,19 +93,19 @@ public class SimpleSvm
 			CostAndGrad(X,y);
 //			System.out.println("cost:"+cost);
 
-			if(cost< min_cost)
-			{
-				min_cost=cost;
-				save=1;
-				continue;
-			}
+//			if(cost< min_cost)
+//			{
+//				min_cost=cost;
+//				save=1;
+//				continue;
+//			}
 			update();
 		}
-		if(save==1)
-		{
-			writeToFile(w,file);
-		}
-		//writeToFile(w,file);
+//		if(save==1)
+//		{
+//			writeToFile(w,file);
+//		}
+		writeToFile(w,file);
 		return min_cost;
 	}
 	private void writeToFile(double[] w,File file){

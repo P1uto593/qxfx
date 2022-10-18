@@ -1,5 +1,6 @@
 package org.spring.springboot.controller;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.spring.springboot.dao.AdminMapper;
@@ -48,7 +49,8 @@ public class IndexController {
 		// 从传入参数中获取账号信息
 		admin.setUsername((String) canshu.get("username"));
 		// 从传入参数中获取密码信息
-		admin.setPassword((String) canshu.get("password"));
+		String password=DigestUtils.md5Hex((String) canshu.get("password"));
+		admin.setPassword(password);
 		List<Admin> admins = admindao.selectByUser(admin);
 
 		// 如果结果为空
@@ -101,16 +103,23 @@ public class IndexController {
 		// 从传入参数中获取账号信息
 		admin.setUsername((String) canshu.get("username"));
 		// 从传入参数中获取密码信息
-		admin.setPassword((String) canshu.get("password")); // 判断两次密码是否一致
-		if (!repassword.equals(admin.getPassword())) {
+		String password1=(String) canshu.get("password");
+		String password=DigestUtils.md5Hex((String) canshu.get("password"));
+		admin.setPassword(password);
+		if (!repassword.equals(password1)) {
 
 			// 将账号已存在信息保存到result的message中进行保存
 			result.put("message", "两次密码不一致");
 			// 将result用json格式数据返回页面
 			return result;
 		} // 判断管理员和identity是否一致
-
-
+		String rootPath = request.getSession().getServletContext().getRealPath("resource/uploads/");
+		String filepath=rootPath+canshu.get("username");
+		File file=new File(filepath);
+		file.mkdir();
+		filepath=filepath+File.separator+"model";
+		file=new File(filepath);
+		file.mkdir();
 		// 根据上方查询条件查询管理员表中username为传入username的数据
 
 		List<Admin> admins = admindao.selectByUsername(admin);
